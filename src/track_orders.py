@@ -23,7 +23,14 @@ class TrackOrders:
         return most_ordered_dish
 
     def get_never_ordered_per_costumer(self, costumer):
-        pass
+        all_dishes = set()
+        dishes_ordered_by_costumer = set()
+        for order in self.data:
+            if order[1] not in all_dishes:
+                all_dishes.add(order[1])
+            if order[0] == costumer:
+                dishes_ordered_by_costumer.add(order[1])
+        return all_dishes.difference(dishes_ordered_by_costumer)
 
     def get_days_never_visited_per_costumer(self, costumer):
         pass
