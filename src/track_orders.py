@@ -9,7 +9,18 @@ class TrackOrders:
         self.data.append([costumer, order, day])
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        pass
+        dishes_count = {}
+        highest_count = 0
+        most_ordered_dish = None
+        for order in self.data:
+            if order[0] == costumer:
+                if order[1] not in dishes_count:
+                    dishes_count[order[1]] = 1
+                else:
+                    dishes_count[order[1]] += 1
+                    if dishes_count[order[1]] > highest_count:
+                        most_ordered_dish = order[1]
+        return most_ordered_dish
 
     def get_never_ordered_per_costumer(self, costumer):
         pass
