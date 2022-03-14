@@ -57,4 +57,14 @@ class TrackOrders:
         return busiest_day
 
     def get_least_busy_day(self):
-        pass
+        workdays_count = {}
+        for order in self.data:
+            if order[2] not in workdays_count:
+                workdays_count[order[2]] = 1
+            else:
+                workdays_count[order[2]] += 1
+        min_visits = min(workdays_count.values())
+        least_busiest_day = [
+            key for key, value in workdays_count.items() if value == min_visits
+            ]
+        return least_busiest_day[0]
